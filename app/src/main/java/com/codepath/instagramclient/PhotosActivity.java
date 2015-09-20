@@ -19,56 +19,37 @@ import java.util.ArrayList;
 public class PhotosActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "93356bafa659446ca2ae44daa5320a5e";
+    String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
 
-
-        //Send out request to popular photos
-
         photos = new ArrayList<>();
-
-        //Create the adapter linking it to the source
         aPhotos = new InstagramPhotosAdapter(this, photos);
-
-        //Find the listview from the layout
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
-
-        //Send the adapter binding it to the ListView
         lvPhotos.setAdapter(aPhotos);
 
-        //Fetch the popular photos
         fetchPopularPhotos();
     }
 
-    //Trigger API request
+    // Trigger API request
     public void fetchPopularPhotos() {
-        String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
-
-        //Create the network client
         AsyncHttpClient client = new AsyncHttpClient();
-
-        //trigger the GET request
         client.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // Expecting a JSON object
-                //Iterate each of the photo items and decode the items into a java object
-
+                // Iterate each of the photo items and decode the items into a Java object
                 JSONArray photosJSON = null;
                 try {
-                    photosJSON = response.getJSONArray("data"); // array of posts
-                    //iterate array of posts
+                    photosJSON = response.getJSONArray("data");
                     for (int i = 0; i < photosJSON.length(); i++) {
-                        //get the JSON object at that position
                         JSONObject photoJSON = photosJSON.getJSONObject(i);
 
-                        //decode the attributes of the json into a data model
+                        // Decode the attributes of the JSON into a data model
                         InstagramPhoto photo = new InstagramPhoto();
                         photo.username = photoJSON.getJSONObject("user").getString("username");
                         photo.fullName = photoJSON.getJSONObject("user").getString("full_name");
@@ -78,7 +59,6 @@ public class PhotosActivity extends AppCompatActivity {
                         photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
                         photo.createdTime = photoJSON.getJSONObject("caption").getLong("created_time");
                         photo.profilePictureURL = photoJSON.getJSONObject("user").getString("profile_picture");
-
 
                         // Add decoded object to the photos
                         photos.add(photo);

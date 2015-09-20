@@ -5,12 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by shehba.shahab on 9/19/15.
- */
 public class Utilities {
 
-    public static String getDateDifferenceForDisplay(long unixTimeStamp) {
+    public static String getRelativeTimeSpanString_Formatted(long unixTimeStamp) {
 
         Date inputdate = new Date(unixTimeStamp * 1000);
 

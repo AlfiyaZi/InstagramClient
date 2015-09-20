@@ -1,8 +1,5 @@
 package com.codepath.instagramclient;
 
-/**
- * Created by shehba.shahab on 9/19/15.
- */
 public class InstagramPhoto {
     public String username;
     public String fullName;

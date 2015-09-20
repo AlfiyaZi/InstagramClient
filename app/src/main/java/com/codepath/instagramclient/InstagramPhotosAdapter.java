@@ -16,33 +16,22 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.List;
 
-/**
- * Created by shehba.shahab on 9/19/15.
- */
 public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
-    // What data do we need from the activity?
-    // Context, Data Source
     public InstagramPhotosAdapter(Context context, List<InstagramPhoto> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
     }
 
-    // What our item looks like
-    // Use the template to display each photo
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //Get the data item for this position
         InstagramPhoto photo = getItem(position);
 
-        //Check if we are using a recycled view, if not we need to inflate
+        // Check if we are using a recycled view, if not we need to inflate
         if (convertView == null) {
-            //create a new view from template
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
         }
 
-        //Lookup the views for populating the data (image, caption)
+        // Look up views to populate data
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         ImageView ivUserIcon = (ImageView) convertView.findViewById(R.id.ivUserIcon);
@@ -52,7 +41,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvCreatedTime = (TextView) convertView.findViewById(R.id.tvCreatedTime);
 
 
-        /* Event handlers */
+        // Event handlers
         ivPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,38 +56,28 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
         });
 
-
-        //Insert the model data into each of the view items
+        // Insert the model data into each of the view items
         String caption = "<b>" + photo.username + "</b><font color=#8e8e93> " + photo.caption + "</font>";
-        tvCaption.setText(Html.fromHtml(caption));
-
         String username = "<b>" + photo.username + "</b>";
-        tvUsername.setText(Html.fromHtml(username));
-
         String likes = "<b> \u2665 " + NumberFormat.getInstance().format(photo.likesCount) + " likes</b>";
+        String relativeDateTimeString = Utilities.getRelativeTimeSpanString_Formatted(photo.createdTime);
+
+        tvCaption.setText(Html.fromHtml(caption));
+        tvUsername.setText(Html.fromHtml(username));
         tvLikes.setText(Html.fromHtml(likes));
-
-        String relativeDateTimeString = Utilities.getDateDifferenceForDisplay(photo.createdTime);
-
         tvCreatedTime.setText("\uD83D\uDD57 " + relativeDateTimeString);
-
         tvFullName.setText(photo.fullName);
 
-
-        //Clear out the image view
+        // Clear out the image views
         ivPhoto.setImageResource(0);
         ivUserIcon.setImageResource(0);
 
-        //Insert the image using picasso
+        // Insert the image using picasso
         Picasso.with(getContext()).load(photo.imageURL).placeholder(R.drawable.placeholder).into(ivPhoto);
         Picasso.with(getContext()).load(photo.profilePictureURL).transform(new CircleTransform()).into(ivUserIcon);
 
-
-        //Return the created item as a view
         return convertView;
     }
-
-
 
     private void likePhoto() {
         Toast toast = Toast.makeText(getContext(),
