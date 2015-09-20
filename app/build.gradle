@@ -29,4 +29,7 @@ dependencies {
     //Load remote images from network into image view
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    compile 'com.android.support:support-v4:22.2.1'
+
+
 }

@@ -38,7 +38,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView tvFullName = (TextView) convertView.findViewById(R.id.tvFullName);
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikesCount);
-        TextView tvCreatedTime = (TextView) convertView.findViewById(R.id.tvCreatedTime);
+        TextView tvCreatedTime = (TextView) convertView.findViewById(R.id.tvRelativeTimeStamp);
 
 
         // Event handlers
@@ -60,7 +60,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         String caption = "<b>" + photo.username + "</b><font color=#8e8e93> " + photo.caption + "</font>";
         String username = "<b>" + photo.username + "</b>";
         String likes = "<b> \u2665 " + NumberFormat.getInstance().format(photo.likesCount) + " likes</b>";
-        String relativeDateTimeString = Utilities.getRelativeTimeSpanString_Formatted(photo.createdTime);
+        String relativeDateTimeString = Utilities.getRelativeTimeSpanString_Formatted(photo.relativeTimeStamp);
 
         tvCaption.setText(Html.fromHtml(caption));
         tvUsername.setText(Html.fromHtml(username));
