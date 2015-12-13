@@ -1,4 +1,4 @@
-package com.codepath.instagramclient;
+package com.codepath.instagramclient.helpers;
 
 /*
  * Copyright 2014 Julian Shen

@@ -1,4 +1,4 @@
-package com.codepath.instagramclient;
+package com.codepath.instagramclient.models;
 
 public class InstagramPhoto {
     public String username;

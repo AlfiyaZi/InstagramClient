@@ -1,4 +1,4 @@
-package com.codepath.instagramclient;
+package com.codepath.instagramclient.adapters;
 
 import android.content.Context;
 import android.text.Html;
@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.instagramclient.R;
+import com.codepath.instagramclient.helpers.CircleTransform;
+import com.codepath.instagramclient.helpers.Utilities;
+import com.codepath.instagramclient.models.InstagramPhoto;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;

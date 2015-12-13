@@ -1,4 +1,4 @@
-package com.codepath.instagramclient;
+package com.codepath.instagramclient.helpers;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

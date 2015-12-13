@@ -1,4 +1,4 @@
-package com.codepath.instagramclient;
+package com.codepath.instagramclient.activities;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.codepath.instagramclient.R;
+import com.codepath.instagramclient.adapters.InstagramPhotosAdapter;
+import com.codepath.instagramclient.models.InstagramPhoto;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -20,8 +23,7 @@ import java.util.ArrayList;
 
 public class PhotosActivity extends AppCompatActivity {
 
-    public static final String CLIENT_ID = "93356bafa659446ca2ae44daa5320a5e";
-    String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
+    private static final String CLIENT_ID = "93356bafa659446ca2ae44daa5320a5e";
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
     private SwipeRefreshLayout swipeContainer;
@@ -56,16 +58,17 @@ public class PhotosActivity extends AppCompatActivity {
     }
 
     // Trigger API request
-    public void fetchPopularPhotos() {
+    private void fetchPopularPhotos() {
 
         photos.clear();
 
         AsyncHttpClient client = new AsyncHttpClient();
+        String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
         client.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // Iterate each of the photo items and decode the items into a Java object
-                JSONArray photosJSON = null;
+                JSONArray photosJSON;
                 try {
                     photosJSON = response.getJSONArray("data");
                     for (int i = 0; i < photosJSON.length(); i++) {
@@ -115,12 +118,6 @@ public class PhotosActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }
