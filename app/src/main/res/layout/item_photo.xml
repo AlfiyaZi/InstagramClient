@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/ivPhoto"
@@ -28,7 +27,7 @@
         android:maxLines="3"
         android:paddingLeft="15dp"
         android:paddingStart="15dp"
-        android:text="Likes"
+        android:text="@string/hint_likes"
         android:textColor="#3f729b"
         android:textSize="15sp" />
 
@@ -44,7 +43,7 @@
         android:paddingLeft="15dp"
         android:paddingStart="15dp"
         android:paddingTop="5dp"
-        android:text="Caption"
+        android:text="@string/hint_caption"
         android:textColor="#3f729b"
         android:textSize="15sp" />
 
@@ -57,7 +56,7 @@
         android:layout_toRightOf="@+id/ivUserIcon"
         android:ellipsize="end"
         android:paddingTop="3dp"
-        android:text="Username"
+        android:text="@string/hint_username"
         android:textColor="#3f729b"
         android:textSize="25sp" />
 
@@ -70,7 +69,7 @@
         android:layout_toEndOf="@+id/ivUserIcon"
         android:layout_toRightOf="@+id/ivUserIcon"
         android:ellipsize="end"
-        android:text="Full Name"
+        android:text="@string/hint_full_name"
         android:textColor="#8e8e93"
         android:textSize="15sp" />
 
@@ -82,7 +81,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:padding="5dp"
-        android:text="Time"
+        android:text="@string/hint_relative_time"
         android:textColor="#8e8e93"
         android:textSize="15sp" />
 
