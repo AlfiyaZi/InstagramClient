@@ -24,6 +24,7 @@ The following **optional** features are implemented:
 
 The following **bonus** features are implemented:
 
+* [x] Apply the popular Butterknife annotation library to reduce view boilerplate.
 * [ ] Show last 2 comments for each photo
 * [ ] Allow user to view all comments for an image within a separate activity or dialog fragment
 * [ ] Allow video posts to be played in full-screen using the VideoView
