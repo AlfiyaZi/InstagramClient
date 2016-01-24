@@ -93,13 +93,20 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
     static class ViewHolder {
 
         // Automatically finds each field by the specified ID.
-        @Bind(R.id.tvCaption) TextView tvCaption;
-        @Bind(R.id.ivPhoto) ImageView ivPhoto;
-        @Bind(R.id.ivUserIcon) ImageView ivUserIcon;
-        @Bind(R.id.tvUsername) TextView tvUsername;
-        @Bind(R.id.tvFullName) TextView tvFullName;
-        @Bind(R.id.tvLikesCount) TextView tvLikesCount;
-        @Bind(R.id.tvRelativeTimeStamp) TextView tvRelativeTimeStamp;
+        @Bind(R.id.tvCaption)
+        TextView tvCaption;
+        @Bind(R.id.ivPhoto)
+        ImageView ivPhoto;
+        @Bind(R.id.ivUserIcon)
+        ImageView ivUserIcon;
+        @Bind(R.id.tvUsername)
+        TextView tvUsername;
+        @Bind(R.id.tvFullName)
+        TextView tvFullName;
+        @Bind(R.id.tvLikesCount)
+        TextView tvLikesCount;
+        @Bind(R.id.tvRelativeTimeStamp)
+        TextView tvRelativeTimeStamp;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

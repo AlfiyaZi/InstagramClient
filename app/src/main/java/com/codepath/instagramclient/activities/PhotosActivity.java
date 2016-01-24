@@ -20,27 +20,33 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class PhotosActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "93356bafa659446ca2ae44daa5320a5e";
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
-    private SwipeRefreshLayout swipeContainer;
+
+    @Bind(R.id.lvPhotos)
+    ListView lvPhotos;
+    @Bind(R.id.swipeContainer)
+    SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        ButterKnife.bind(this);
 
         // Populate listView onCreate
         photos = new ArrayList<>();
         aPhotos = new InstagramPhotosAdapter(this, photos);
-        ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         lvPhotos.setAdapter(aPhotos);
         fetchPopularPhotos();
 
         // Setup refresh listener which triggers new data loading
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -53,7 +59,6 @@ public class PhotosActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
     }
 
     // Trigger API request
@@ -106,7 +111,6 @@ public class PhotosActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_photos, menu);
         return true;
     }
