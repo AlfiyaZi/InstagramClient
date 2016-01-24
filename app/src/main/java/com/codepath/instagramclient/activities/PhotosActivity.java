@@ -1,12 +1,5 @@
 package com.codepath.instagramclient.activities;
 
-import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.widget.ListView;
-
 import com.codepath.instagramclient.R;
 import com.codepath.instagramclient.adapters.InstagramPhotosAdapter;
 import com.codepath.instagramclient.models.InstagramPhoto;
@@ -18,6 +11,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.widget.ListView;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -26,13 +26,12 @@ import butterknife.ButterKnife;
 public class PhotosActivity extends AppCompatActivity {
 
     private static final String CLIENT_ID = "93356bafa659446ca2ae44daa5320a5e";
-    private ArrayList<InstagramPhoto> photos;
-    private InstagramPhotosAdapter aPhotos;
-
     @Bind(R.id.lvPhotos)
     ListView lvPhotos;
     @Bind(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
+    private ArrayList<InstagramPhoto> photos;
+    private InstagramPhotosAdapter aPhotos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
