@@ -20,6 +20,9 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
     public InstagramPhotosAdapter(Context context, List<InstagramPhoto> objects) {
@@ -27,37 +30,28 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View view, ViewGroup parent) {
         // Get the data item for this position
         InstagramPhoto photo = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
-        if (convertView == null) {
-            viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
-
-            // Look up views to populate data
-            viewHolder.tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
-            viewHolder.ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
-            viewHolder.ivUserIcon = (ImageView) convertView.findViewById(R.id.ivUserIcon);
-            viewHolder.tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
-            viewHolder.tvFullName = (TextView) convertView.findViewById(R.id.tvFullName);
-            viewHolder.tvLikes = (TextView) convertView.findViewById(R.id.tvLikesCount);
-            viewHolder.tvCreatedTime = (TextView) convertView.findViewById(R.id.tvRelativeTimeStamp);
-            convertView.setTag(viewHolder);
+        ViewHolder holder; // view lookup cache stored in tag
+        if (view == null) {
+            view = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            holder = (ViewHolder) view.getTag();
         }
 
         // Event handlers
-        viewHolder.ivPhoto.setOnClickListener(new View.OnClickListener() {
+        holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 likePhoto();
             }
         });
-        viewHolder.tvLikes.setOnClickListener(new View.OnClickListener() {
+        holder.tvLikesCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 likePhoto();
@@ -70,22 +64,22 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         String likes = "<b>♥ " + NumberFormat.getInstance().format(photo.likesCount) + " likes</b>";
         String relativeDateTimeString = Utilities.getRelativeTimeSpanString_Formatted(photo.relativeTimeStamp);
 
-        viewHolder.tvCaption.setText(Html.fromHtml(caption));
-        viewHolder.tvUsername.setText(Html.fromHtml(username));
-        viewHolder.tvLikes.setText(Html.fromHtml(likes));
-        viewHolder.tvCreatedTime.setText(relativeDateTimeString);
-        viewHolder.tvFullName.setText(photo.fullName);
+        holder.tvCaption.setText(Html.fromHtml(caption));
+        holder.tvUsername.setText(Html.fromHtml(username));
+        holder.tvLikesCount.setText(Html.fromHtml(likes));
+        holder.tvRelativeTimeStamp.setText(relativeDateTimeString);
+        holder.tvFullName.setText(photo.fullName);
 
         // Clear out the image views
-        viewHolder.ivPhoto.setImageResource(0);
-        viewHolder.ivUserIcon.setImageResource(0);
+        holder.ivPhoto.setImageResource(0);
+        holder.ivUserIcon.setImageResource(0);
 
         // Insert the image using picasso
-        Picasso.with(getContext()).load(photo.imageURL).placeholder(R.drawable.placeholder).into(viewHolder.ivPhoto);
-        Picasso.with(getContext()).load(photo.profilePictureURL).transform(new CircleTransform()).into(viewHolder.ivUserIcon);
+        Picasso.with(getContext()).load(photo.imageURL).placeholder(R.drawable.placeholder).into(holder.ivPhoto);
+        Picasso.with(getContext()).load(photo.profilePictureURL).transform(new CircleTransform()).into(holder.ivUserIcon);
 
         // Return the completed view to render on screen
-        return convertView;
+        return view;
     }
 
     private void likePhoto() {
@@ -96,13 +90,19 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
     }
 
     // View lookup cache
-    private static class ViewHolder {
-        TextView tvCaption;
-        ImageView ivPhoto;
-        ImageView ivUserIcon;
-        TextView tvUsername;
-        TextView tvFullName;
-        TextView tvLikes;
-        TextView tvCreatedTime;
+    static class ViewHolder {
+
+        // Automatically finds each field by the specified ID.
+        @Bind(R.id.tvCaption) TextView tvCaption;
+        @Bind(R.id.ivPhoto) ImageView ivPhoto;
+        @Bind(R.id.ivUserIcon) ImageView ivUserIcon;
+        @Bind(R.id.tvUsername) TextView tvUsername;
+        @Bind(R.id.tvFullName) TextView tvFullName;
+        @Bind(R.id.tvLikesCount) TextView tvLikesCount;
+        @Bind(R.id.tvRelativeTimeStamp) TextView tvRelativeTimeStamp;
+
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }
