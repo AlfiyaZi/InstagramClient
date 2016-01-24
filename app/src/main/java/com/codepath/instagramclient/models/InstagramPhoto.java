@@ -9,5 +9,4 @@ public class InstagramPhoto {
     public int likesCount;
     public long relativeTimeStamp;
     public String profilePictureURL;
-
 }

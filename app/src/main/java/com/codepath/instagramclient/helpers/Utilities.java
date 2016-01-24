@@ -9,13 +9,13 @@ public class Utilities {
 
     public static String getRelativeTimeSpanString_Formatted(long unixTimeStamp) {
 
-        Date inputdate = new Date(unixTimeStamp * 1000);
+        Date inputDate = new Date(unixTimeStamp * 1000);
 
         Calendar now = Calendar.getInstance();
         Calendar then = Calendar.getInstance();
 
         now.setTime(new Date());
-        then.setTime(inputdate);
+        then.setTime(inputDate);
 
         // Get the represented date in milliseconds
         long nowMs = now.getTimeInMillis();
@@ -30,20 +30,20 @@ public class Utilities {
         long diffDays = diff / (24 * 60 * 60 * 1000);
 
         if (diffMinutes < 60) {
-            return diffMinutes + " m";
+            return diffMinutes + "m";
 
         } else if (diffHours < 24) {
-            return diffHours + " h";
+            return diffHours + "h";
 
         } else if (diffDays < 7) {
-            return diffDays + " d";
+            return diffDays + "d";
 
         } else {
 
             SimpleDateFormat todate = new SimpleDateFormat("MMM dd",
                     Locale.ENGLISH);
 
-            return todate.format(inputdate);
+            return todate.format(inputDate);
         }
     }
 

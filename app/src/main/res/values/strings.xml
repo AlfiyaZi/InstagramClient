@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Popular Photos</string>
-    <string name="hint_likes">Likes</string>
+    <string name="content_description_instagram_photo">Instagram Photo</string>
+    <string name="content_description_user_photo">User Photo</string>
     <string name="hint_caption">Caption</string>
-    <string name="hint_username">Username</string>
     <string name="hint_full_name">Full Name</string>
+    <string name="hint_likes">Likes</string>
     <string name="hint_relative_time">Time</string>
+    <string name="hint_username">Username</string>
 </resources>

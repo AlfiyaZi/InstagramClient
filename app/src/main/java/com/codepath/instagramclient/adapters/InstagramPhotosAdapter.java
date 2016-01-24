@@ -44,7 +44,6 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikesCount);
         TextView tvCreatedTime = (TextView) convertView.findViewById(R.id.tvRelativeTimeStamp);
 
-
         // Event handlers
         ivPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +68,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         tvCaption.setText(Html.fromHtml(caption));
         tvUsername.setText(Html.fromHtml(username));
         tvLikes.setText(Html.fromHtml(likes));
-        tvCreatedTime.setText("\uD83D\uDD57 " + relativeDateTimeString);
+        tvCreatedTime.setText(relativeDateTimeString);
         tvFullName.setText(photo.fullName);
 
         // Clear out the image views
