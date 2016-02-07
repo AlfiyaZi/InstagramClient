@@ -29,10 +29,6 @@ The following **bonus** features are implemented:
 * [ ] Allow user to view all comments for an image within a separate activity or dialog fragment
 * [ ] Allow video posts to be played in full-screen using the VideoView
 
-The following **additional** features are implemented:
-
-* [x] Toast when image is pressed (liked)
-
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
