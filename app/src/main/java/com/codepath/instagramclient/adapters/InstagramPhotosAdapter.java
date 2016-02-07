@@ -8,14 +8,12 @@ import com.squareup.picasso.Picasso;
 
 import android.content.Context;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -44,20 +42,6 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
             holder = (ViewHolder) view.getTag();
         }
 
-        // Event handlers
-        holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                likePhoto();
-            }
-        });
-        holder.tvLikesCount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                likePhoto();
-            }
-        });
-
         // Populate the data into the template view using the data object
         String caption = "<b>" + photo.username + "</b><font color=#8e8e93> " + photo.caption + "</font>";
         String username = "<b>" + photo.username + "</b>";
@@ -80,13 +64,6 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
         // Return the completed view to render on screen
         return view;
-    }
-
-    private void likePhoto() {
-        Toast toast = Toast.makeText(getContext(),
-                "♥", Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
     }
 
     // View lookup cache
